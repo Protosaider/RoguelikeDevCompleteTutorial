@@ -6,10 +6,10 @@ public abstract class GameState
 {
 	protected GameContext Context;
 
-	public void SetContext(GameContext context)
+	public virtual void SetContext(GameContext context)
 	{
 		Context = context;
 	}
 
-	public abstract void Handle1();
+	public abstract void HandleUpdate();
 }

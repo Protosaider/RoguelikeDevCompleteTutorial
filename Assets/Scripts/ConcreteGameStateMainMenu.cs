@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ConcreteGameStateMainMenu : GameState
 {
-	public override void Handle1()
+	public override void HandleUpdate()
 	{
         Debug.Log("ConcreteGameStateMainMenu handles request.");
-		Debug.Log("ConcreteGameStateMainMenu wants to change the state of the context.");
+		//Debug.Log("ConcreteGameStateMainMenu wants to change the state of the context.");
 		//Context.TransitionTo(new ConcreteGameStateInGame());
 	}
 }

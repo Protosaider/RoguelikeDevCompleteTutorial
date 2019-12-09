@@ -1,18 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	[SerializeField]
+	private BaseMovement _baseMovement;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void Awake()
+	{
+		_baseMovement = new BaseMovement(GetComponent<Transform>());
+	}
+
+	public void HandleMovement(EDirection direction) => _baseMovement.HandleMovement(direction);
+	public Boolean CanMove() => _baseMovement.CanMove();
 }

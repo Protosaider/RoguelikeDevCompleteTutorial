@@ -7,9 +7,15 @@ public class GameManager : MonoBehaviour
 {
 	//TODO make it singleton
 
+	[SerializeField]
+	private GameContext _gameContext;
+
+	public GameState CurrentState => _gameContext.CurrentState;
+
+	public static GameManager s_instance;
+
 	private void Awake()
 	{
-		FindObjectOfType<PlayerMovement>().OnMove += SwitchGameTurn;
 	}
 
 	private EGameTurn _currentTurn;
