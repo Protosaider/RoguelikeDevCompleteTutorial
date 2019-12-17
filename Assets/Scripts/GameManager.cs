@@ -5,40 +5,33 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-	//TODO make it singleton
-
-	[SerializeField]
-	private GameContext _gameContext;
-
-	public GameState CurrentState => _gameContext.CurrentState;
-
+    //TODO make it singleton
 	public static GameManager s_instance;
 
-	private void Awake()
+    [SerializeField]
+	private GameContext _gameContext;
+    [SerializeField]
+	private EGameState InitialGameState;
+
+	[SerializeField]
+	private InputManager _inputManager;
+    [SerializeField]
+	private EInputHandler InitialInputHandler;
+
+	public EGameState CurrentGameState => _gameContext.CurrentState;
+	public EInputHandler CurrentInputHandler => _inputManager.CurrentHandler;
+
+    private void Awake()
 	{
+		_gameContext = new GameContext(this, InitialGameState);
+		_inputManager = new InputManager(this, InitialInputHandler);
 	}
 
-	private EGameTurn _currentTurn;
-	public EGameTurn CurrentTurn
+	public void Update()
 	{
-		get => _currentTurn;
-		private set => _currentTurn = value;
-	}
-
-	public void SwitchGameTurn()
-	{
-		switch (CurrentTurn)
-		{
-			case EGameTurn.Player:
-				CurrentTurn = EGameTurn.Enemies;
-                break;
-
-			case EGameTurn.Enemies:
-				CurrentTurn = EGameTurn.Player;
-				break;
-
-			default:
-				throw new ArgumentOutOfRangeException();
-		}
-	}
+		_inputManager.HandleInput();
+		_gameContext.Request();
+    }
 }
+
+

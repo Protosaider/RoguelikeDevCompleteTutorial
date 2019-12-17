@@ -5,14 +5,18 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-	[SerializeField]
-	private BaseMovement _baseMovement;
+	public Map Map;
+
+    public BaseMovement BaseMovement;
+	public BaseRenderer BaseRenderer;
+
+	public TileData EntityTileData;
+
+	public Vector2Int CurrentPosition;
 
 	private void Awake()
 	{
-		_baseMovement = new BaseMovement(GetComponent<Transform>());
+		BaseMovement = new BaseMovement(GetComponent<Transform>());
+		BaseRenderer = GetComponent<BaseRenderer>();
 	}
-
-	public void HandleMovement(EDirection direction) => _baseMovement.HandleMovement(direction);
-	public Boolean CanMove() => _baseMovement.CanMove();
 }

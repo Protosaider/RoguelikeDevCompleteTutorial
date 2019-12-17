@@ -19,10 +19,15 @@ public class CameraPositioner : MonoBehaviour
     // Update is called once per frame
     void Update()
 	{
-		var position = _cameraTransform.position;
+		var cameraPosition = _cameraTransform.position;
+		var position = cameraPosition;
+
 		_targetPosition = _targetTransform.position;
 		position.x = _targetPosition.x;
 		position.z = _targetPosition.z;
-		_cameraTransform.position = position;
+
+		cameraPosition = Vector3.Lerp(cameraPosition, position, Time.deltaTime);
+
+		_cameraTransform.position = cameraPosition;
 	}
 }

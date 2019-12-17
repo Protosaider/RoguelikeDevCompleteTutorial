@@ -4,6 +4,8 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: Font16_42_Normal4_sheet_0
     21300002: Font16_42_Normal4_sheet_1
+    21300004: Font16_42_Normal4_sheet_2
+    21300006: Font16_42_Normal4_sheet_3
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -132,6 +134,46 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 5035c02625447ae40bec95f7910b10c4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Font16_42_Normal4_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 191
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c405c6f75f8824f459a31580fcbd4062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Font16_42_Normal4_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 102
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cca57e8061f14644dae4c42b164d6612
       vertices: []
       indices: 
       edges: []

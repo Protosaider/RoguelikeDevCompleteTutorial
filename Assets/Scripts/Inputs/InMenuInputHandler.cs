@@ -5,29 +5,28 @@ using UnityEngine;
 
 public class InMenuInputHandler : InputHandler
 {
-	[SerializeField]
-	private InputHandler _switchToInputHandler;
+	public EInputHandler _switchToInputHandler;
 
 	public event Action OnKeyDownEscape;
 
 	public override void HandleInput()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
-			OnKeyDownEscape();
+			OnKeyDownEscape?.Invoke();
 	}
 
-	private void OnEnable()
-	{
+	public override void OnSwitchingToThisHandler()
+    {
 		OnKeyDownEscape += SwitchToGameInputHandler;
 	}
 
-	private void OnDisable()
-	{
+	public override void OnSwitchingFromThisHandler()
+    {
 		OnKeyDownEscape -= SwitchToGameInputHandler;
 	}
 
 	private void SwitchToGameInputHandler()
 	{
-		InputManager.SwitchInputHandlerTo(_switchToInputHandler);
+		InputManager.SwitchTo(_switchToInputHandler);
 	}
 }
