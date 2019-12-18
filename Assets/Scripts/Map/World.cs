@@ -6,14 +6,21 @@ using UnityEngine;
 public class World : MonoBehaviour
 {
 	[SerializeField]
-	private List<MapFiller> MapFillers;
+	private Int32 Width = 20;
+	[SerializeField]
+	private Int32 Height = 20;
+	[Space]
 	[SerializeField]
 	private MapRenderer MapRenderer;
-
+    [Header("Map Fillers")]
 	[SerializeField]
-	private Int32 Width = 20, Height = 20;
+	private DefaultMapFiller DefaultMapFiller;
+	[SerializeField]
+	private SquareRoomMapFiller RoomMapFiller;
 
-	public Map CurrentMap;
+	public Vector2Int PlayerSpawnPoint;
+
+    public Map CurrentMap;
 
 	public World()
 	{
@@ -24,10 +31,9 @@ public class World : MonoBehaviour
 	{
 		MapRenderer.SetMap(CurrentMap);
 
-		for (var i = 0; i < MapFillers.Count; i++)
-		{
-			var mapFiller = MapFillers[i];
-			mapFiller.FillMap(CurrentMap);
-		}
+		DefaultMapFiller.FillMap(CurrentMap);
+		RoomMapFiller.FillMap(CurrentMap);
+
+		PlayerSpawnPoint = RoomMapFiller.GetSpawnPoint();
 	}
 }

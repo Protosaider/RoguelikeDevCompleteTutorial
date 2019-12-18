@@ -11,9 +11,9 @@ public class Cell
 	public Boolean IsTransparent;
 	public Boolean IsWalkable;
     //public Boolean IsExplored;
-    //public Boolean IsInFov;
+    public Boolean IsInFov;
 
-	public Int32 X
+    public Int32 X
 	{
 		get => Position.x;
 		set => Position.x = value;

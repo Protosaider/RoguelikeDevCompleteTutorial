@@ -334,14 +334,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259d077634db2d042b49f77d6f2c2698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapFillers:
-  - EmptyTileGenerator:
-      TileData: {fileID: 11400000, guid: 1378daf67d8add0469a23ba968f769ad, type: 2}
-    WallTileGenerator:
-      TileData: {fileID: 11400000, guid: bf6de796473e8904997fa15813f96418, type: 2}
-  MapRenderer: {fileID: 1472837368}
   Width: 20
   Height: 20
+  MapRenderer: {fileID: 1472837368}
+  DefaultMapFiller:
+    WallTileGenerator:
+      TileData: {fileID: 11400000, guid: bf6de796473e8904997fa15813f96418, type: 2}
+  RoomMapFiller:
+    maxRooms: 4
+    roomMinSize: 2
+    roomMaxSize: 6
+    EmptyTileGenerator:
+      TileData: {fileID: 11400000, guid: 1378daf67d8add0469a23ba968f769ad, type: 2}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,6 +670,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd6f3846f91ea7641bb6b738eb752d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Name: 
   m_EditorClassIdentifier: 
   m_Name: 
