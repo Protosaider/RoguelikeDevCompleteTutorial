@@ -14,5 +14,8 @@ public abstract class GameState
 		Context = context;
 	}
 
-	public abstract void HandleUpdate();
+	public virtual void OnTransitionTo() { }
+	public virtual void OnTransitionFrom() { }
+
+	public abstract void HandleUpdate((EInputAction, System.Object) inputAction);
 }

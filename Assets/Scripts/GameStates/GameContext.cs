@@ -54,13 +54,14 @@ public class GameContext
 	// The Context allows changing the State object at runtime.
 	public void TransitionTo(EGameState state)
 	{
-		Debug.Log($"Context: Transition to {state.GetType().Name}.");
+        Debug.Log($"{CurrentState.ToString()} wants to change the state of the context.");
+        Debug.Log($"Context: Transition to {state.ToString()}.");
 		SetCurrentState(state, _gameStates[state]);
 	}
 
 	// The Context delegates part of its behavior to the current State object.
-	public void Request() //calls current state to react to the request
+	public void Request((EInputAction, System.Object) inputAction) //calls current state to react to the request
 	{
-		_currentState.HandleUpdate();
+		_currentState.HandleUpdate(inputAction);
 	}
 }

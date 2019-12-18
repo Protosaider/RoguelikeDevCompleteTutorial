@@ -56,16 +56,12 @@ public class InputManager
 			_currentHandler.OnSwitchingToThisHandler();
 	}
 
-	//private void Update()
-	//{
-	//	if (!Object.ReferenceEquals(_currentHandler, null))
-	//		_currentHandler.HandleInput();
-	//}
-
-	public void HandleInput()
+	public (EInputAction, System.Object) HandleInput()
 	{
 		if (!Object.ReferenceEquals(_currentHandler, null))
-			_currentHandler.HandleInput();
+			return _currentHandler.HandleInput();
+
+		return (EInputAction.None, null);
 	}
 
 }

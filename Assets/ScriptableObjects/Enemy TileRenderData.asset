@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80c5e998556d40a7b15beac1d1d27249, type: 3}
-  m_Name: Entity Tile Data
+  m_Script: {fileID: 11500000, guid: 18eda3e4391e4f49a1efaa5fd53781c4, type: 3}
+  m_Name: Enemy TileRenderData
   m_EditorClassIdentifier: 
-  InitialTileRenderData: {fileID: 11400000, guid: e27b22da80ea2dd44a34fc8f53eb8d62,
-    type: 2}
-  InitialCellData:
-    Position: {x: 0, y: 0}
-    IsTransparent: 0
-    IsWalkable: 0
+  Name: Enemy
+  Description: 
+  Sprite: {fileID: 21300006, guid: 56374747c53242249a7fedb2cac9fdad, type: 3}
+  OrderInSortingLayer: 0
+  SortingLayerId: 0

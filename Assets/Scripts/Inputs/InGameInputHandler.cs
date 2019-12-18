@@ -1,48 +1,52 @@
 ﻿using System;
 using UnityEngine;
 
+public enum EInputAction
+{
+	None,
+	MoveLeft,
+	MoveRight,
+	MoveUp,
+	MoveDown,
+	Wait,
+	Escape,
+}
+
 public class InGameInputHandler : InputHandler
 {
-    private EInputHandler _switchToInputHandler;
-
-	public event Action<EDirection> OnKeyDownD;
-	public event Action<EDirection> OnKeyDownA;
-	public event Action<EDirection> OnKeyDownW;
-	public event Action<EDirection> OnKeyDownS;
-
-	public event Action OnKeyDownEscape;
-
-	public override void HandleInput()
+	public override (EInputAction, System.Object) HandleInput()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
-			OnKeyDownEscape?.Invoke();
+			return (EInputAction.Escape, null);
 
 		if (GameManager.CurrentGameState == EGameState.ConcreteGameStatePlayerTurn)
 		{
 			if (Input.GetKeyDown(KeyCode.D))
-				OnKeyDownD?.Invoke(EDirection.Right);
-			else if (Input.GetKeyDown(KeyCode.A))
-				OnKeyDownA?.Invoke(EDirection.Left);
-			else if (Input.GetKeyDown(KeyCode.W))
-				OnKeyDownW?.Invoke(EDirection.Up);
-			else if (Input.GetKeyDown(KeyCode.S))
-				OnKeyDownS?.Invoke(EDirection.Down);
+				return (EInputAction.MoveRight, EDirection.Right);
+
+			if (Input.GetKeyDown(KeyCode.A))
+				return (EInputAction.MoveLeft, EDirection.Left);
+
+			if (Input.GetKeyDown(KeyCode.W))
+				return (EInputAction.MoveUp, EDirection.Up);
+
+			if (Input.GetKeyDown(KeyCode.S))
+				return (EInputAction.MoveDown, EDirection.Down);
+
+			if (Input.GetKeyDown(KeyCode.Space))
+				return (EInputAction.Wait, null);
         }
+
+		return (EInputAction.None, null);
 	}
 
 	public override void OnSwitchingToThisHandler()
 	{
-		OnKeyDownEscape += SwitchToMainMenuInputHandler;
+		//OnKeyDownEscape += SwitchToMainMenuInputHandler;
     }
 
     public override void OnSwitchingFromThisHandler()
 	{
-		OnKeyDownEscape -= SwitchToMainMenuInputHandler;
+		//OnKeyDownEscape -= SwitchToMainMenuInputHandler;
     }
-
-	private void SwitchToMainMenuInputHandler()
-    {
-        InputManager.SwitchTo(_switchToInputHandler);
-    }
-
 }

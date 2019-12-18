@@ -11,7 +11,7 @@ public abstract class InputHandler
         InputManager = manager;
 	}
 
-    public abstract void HandleInput();
+    public abstract (EInputAction, System.Object) HandleInput();
 	public abstract void OnSwitchingToThisHandler();
 	public abstract void OnSwitchingFromThisHandler();
 }

@@ -8,15 +8,22 @@ public class GameManager : MonoBehaviour
     //TODO make it singleton
 	public static GameManager s_instance;
 
-    [SerializeField]
-	private GameContext _gameContext;
-    [SerializeField]
-	private EGameState InitialGameState;
-
 	[SerializeField]
-	private InputManager _inputManager;
+	private EGameState InitialGameState;
     [SerializeField]
 	private EInputHandler InitialInputHandler;
+
+    [SerializeField]
+	private GameContext _gameContext;
+	[SerializeField]
+	private InputManager _inputManager;
+
+
+    [SerializeField]
+	public EntitiesHolder _entitiesHolder;
+
+	[SerializeField]
+	public World _world;
 
 	public EGameState CurrentGameState => _gameContext.CurrentState;
 	public EInputHandler CurrentInputHandler => _inputManager.CurrentHandler;
@@ -29,8 +36,8 @@ public class GameManager : MonoBehaviour
 
 	public void Update()
 	{
-		_inputManager.HandleInput();
-		_gameContext.Request();
+		var inputAction = _inputManager.HandleInput();
+		_gameContext.Request(inputAction);
     }
 }
 

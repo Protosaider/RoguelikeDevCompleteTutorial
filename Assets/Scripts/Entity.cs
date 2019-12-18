@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-	public Map Map;
-
     public BaseMovement BaseMovement;
 	public BaseRenderer BaseRenderer;
 
@@ -16,7 +14,7 @@ public class Entity : MonoBehaviour
 
 	private void Awake()
 	{
-		BaseMovement = new BaseMovement(GetComponent<Transform>());
+		BaseMovement = new BaseMovement(GetComponent<Transform>(), this);
 		BaseRenderer = GetComponent<BaseRenderer>();
 	}
 }

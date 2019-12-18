@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = System.Object;
 
 public class InMenuInputHandler : InputHandler
 {
@@ -9,10 +10,12 @@ public class InMenuInputHandler : InputHandler
 
 	public event Action OnKeyDownEscape;
 
-	public override void HandleInput()
+	public override (EInputAction, Object) HandleInput()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 			OnKeyDownEscape?.Invoke();
+
+		return (EInputAction.None, null);
 	}
 
 	public override void OnSwitchingToThisHandler()

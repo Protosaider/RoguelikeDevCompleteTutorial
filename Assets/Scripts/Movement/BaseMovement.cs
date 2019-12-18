@@ -2,24 +2,22 @@
 using UnityEngine;
 
 [Serializable]
-public class BaseMovement : IMoving
+public class BaseMovement
 {
 	private readonly Transform _transform;
+	private readonly Entity _entity;
 
-	public BaseMovement(Transform transform)
+	public BaseMovement(Transform transform, Entity entity)
 	{
 		_transform = transform;
+		_entity = entity;
 	}
 
-	public virtual void HandleMovement(Map map, Entity entity, EDirection direction)
+	public virtual void HandleMovement(EDirection direction)
 	{
 		var moveTo = direction.ToVector3();
-		entity.CurrentPosition += direction.ToVector2Int();
+		_entity.CurrentPosition += direction.ToVector2Int();
 		_transform.position += moveTo;
 	}
 
-	public virtual Boolean CanMove(Map map, Entity entity, EDirection direction)
-	{
-		return map.CanMove(entity.CurrentPosition, direction);
-	}
 }

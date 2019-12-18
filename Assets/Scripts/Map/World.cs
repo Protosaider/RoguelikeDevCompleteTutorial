@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class World : MonoBehaviour
 {
-	public List<MapFiller> MapFillers;
-	public MapRenderer MapRenderer;
+	[SerializeField]
+	private List<MapFiller> MapFillers;
+	[SerializeField]
+	private MapRenderer MapRenderer;
 
-	public Int32 Width = 20, Height = 20;
+	[SerializeField]
+	private Int32 Width = 20, Height = 20;
 
 	public Map CurrentMap;
-	public List<Entity> Entities;
-	public Entity PlayerEntity;
 
 	public World()
 	{
@@ -27,14 +28,6 @@ public class World : MonoBehaviour
 		{
 			var mapFiller = MapFillers[i];
 			mapFiller.FillMap(CurrentMap);
-		}
-
-		PlayerEntity.Map = CurrentMap;
-
-		for (var i = 0; i < Entities.Count; i++)
-		{
-			var entity = Entities[i];
-			entity.Map = CurrentMap;
 		}
 	}
 }
