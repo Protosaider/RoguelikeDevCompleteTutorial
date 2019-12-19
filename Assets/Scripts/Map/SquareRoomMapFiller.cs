@@ -20,7 +20,7 @@ public class SquareRoomMapFiller : IMapFiller
 
 	private Vector2Int _playerSpawnPoint;
 
-    public void FillMap(Map map)
+    public void FillMap(TileMap map)
 	{
         //TODO: Random seed?
 
@@ -64,26 +64,26 @@ public class SquareRoomMapFiller : IMapFiller
 		}
     }
 
-	private void CreateRoom(RectInt area, Map map)
+	private void CreateRoom(RectInt area, TileMap map)
 	{
 		for (var y = area.yMin; y < area.yMax; y++)
 			for (var x = area.xMin; x < area.xMax; x++)
-				map.SetTile(x, y, EmptyTileGenerator.Generate());
+				map.SetItem(x, y, EmptyTileGenerator.Generate(x, y));
 	}
 
-	private void CreateHorizontalTunnel(Int32 firstRoomCenterX, Int32 secondRoomCenterX, Int32 firstRoomCenterY, Map map)
+	private void CreateHorizontalTunnel(Int32 firstRoomCenterX, Int32 secondRoomCenterX, Int32 firstRoomCenterY, TileMap map)
 	{
 		var xMax = Mathf.Max(firstRoomCenterX, secondRoomCenterX);
 
         for (var x = Mathf.Min(firstRoomCenterX, secondRoomCenterX); x <= xMax; x++)
-			map.SetTile(x, firstRoomCenterY, EmptyTileGenerator.Generate());
+			map.SetItem(x, firstRoomCenterY, EmptyTileGenerator.Generate(x, firstRoomCenterY));
 	}
 
-	private void CreateVerticalTunnel(Int32 firstRoomCenterY, Int32 secondRoomCenterY, Int32 firstRoomCenterX, Map map)
+	private void CreateVerticalTunnel(Int32 firstRoomCenterY, Int32 secondRoomCenterY, Int32 firstRoomCenterX, TileMap map)
 	{
 		var yMax = Mathf.Max(firstRoomCenterY, secondRoomCenterY);
 
         for (var y = Mathf.Min(firstRoomCenterY, secondRoomCenterY); y <= yMax; y++)
-			map.SetTile(firstRoomCenterX, y, EmptyTileGenerator.Generate());
+			map.SetItem(firstRoomCenterX, y, EmptyTileGenerator.Generate(firstRoomCenterX, y));
 	}
 }

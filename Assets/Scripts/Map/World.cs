@@ -11,7 +11,7 @@ public class World : MonoBehaviour
 	private Int32 Height = 20;
 	[Space]
 	[SerializeField]
-	private MapRenderer MapRenderer;
+	public MapRenderer MapRenderer;
     [Header("Map Fillers")]
 	[SerializeField]
 	private DefaultMapFiller DefaultMapFiller;
@@ -20,11 +20,11 @@ public class World : MonoBehaviour
 
 	public Vector2Int PlayerSpawnPoint;
 
-    public Map CurrentMap;
+    public TileMap CurrentMap;
 
 	public World()
 	{
-		CurrentMap = new Map(Width, Height);
+		CurrentMap = new TileMap(Width, Height);
 	}
 
 	public void Awake()

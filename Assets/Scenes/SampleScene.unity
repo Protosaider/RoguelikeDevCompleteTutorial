@@ -229,6 +229,7 @@ MonoBehaviour:
   BaseRenderer: {fileID: 0}
   EntityTileData: {fileID: 11400000, guid: 00744e28ff9096743a909ca11076d0c5, type: 2}
   CurrentPosition: {x: 2, y: 0}
+  FovRadius: 0
 --- !u!114 &242656987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,6 +347,7 @@ MonoBehaviour:
     roomMaxSize: 6
     EmptyTileGenerator:
       TileData: {fileID: 11400000, guid: 1378daf67d8add0469a23ba968f769ad, type: 2}
+  PlayerSpawnPoint: {x: 8, y: 8}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,6 +586,7 @@ MonoBehaviour:
   BaseRenderer: {fileID: 0}
   EntityTileData: {fileID: 11400000, guid: 00744e28ff9096743a909ca11076d0c5, type: 2}
   CurrentPosition: {x: 2, y: 3}
+  FovRadius: 0
 --- !u!4 &810702852
 Transform:
   m_ObjectHideFlags: 0
@@ -607,7 +610,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 983955149}
-  - component: {fileID: 983955152}
   - component: {fileID: 983955150}
   - component: {fileID: 983955153}
   - component: {fileID: 983955151}
@@ -647,6 +649,7 @@ MonoBehaviour:
   BaseRenderer: {fileID: 0}
   EntityTileData: {fileID: 11400000, guid: 00744e28ff9096743a909ca11076d0c5, type: 2}
   CurrentPosition: {x: 0, y: 0}
+  FovRadius: 5
 --- !u!114 &983955151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,47 +663,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300002, guid: 56374747c53242249a7fedb2cac9fdad, type: 3}
---- !u!114 &983955152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 983955148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd6f3846f91ea7641bb6b738eb752d09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entity: {fileID: 0}
 --- !u!212 &983955153
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -841,5 +803,7 @@ MonoBehaviour:
     currentState: 0
   _inputManager:
     currentHandler: 0
+  _mapRenderer: {fileID: 1472837368}
   _entitiesHolder: {fileID: 766279465}
   _world: {fileID: 398251129}
+  _fieldOfView: {fileID: 0}

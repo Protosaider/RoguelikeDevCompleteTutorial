@@ -19,7 +19,7 @@ public class BaseRenderer : MonoBehaviour
 		transform.localScale = new Vector3(3, 3, 1);
 	}
 
-	public void SetSprite(Sprite sprite, Int32 sortingOrder, Int32 sortingLayerId)
+	public void SetSpriteRendererSettings(Sprite sprite, Int32 sortingOrder, Int32 sortingLayerId)
 	{
 		if (sprite == _spriteRenderer.sprite && _spriteRenderer.sortingOrder == sortingOrder && _spriteRenderer.sortingLayerID == sortingLayerId)
 			return;
@@ -28,6 +28,10 @@ public class BaseRenderer : MonoBehaviour
 		_spriteRenderer.sprite = _sprite;
 		_spriteRenderer.sortingOrder = sortingOrder;
 		_spriteRenderer.sortingLayerID = sortingLayerId;
+	}
 
+	public void FovTest(Boolean isInFov)
+	{
+		_spriteRenderer.color = isInFov ? Color.green : Color.red;
 	}
 }

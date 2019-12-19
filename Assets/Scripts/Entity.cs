@@ -12,6 +12,8 @@ public class Entity : MonoBehaviour
 
 	public Vector2Int CurrentPosition;
 
+	public Int32 FovRadius;
+
 	private void Awake()
 	{
 		BaseMovement = new BaseMovement(GetComponent<Transform>(), this);

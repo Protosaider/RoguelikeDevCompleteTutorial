@@ -9,10 +9,10 @@ public class DefaultMapFiller : IMapFiller
 {
 	public TileGenerator WallTileGenerator;
 
-	public void FillMap(Map map)
+	public void FillMap(TileMap map)
 	{
 		for (var y = 0; y < map.Height; y++)
 			for (var x = 0; x < map.Width; x++)
-				map.SetTile(x, y, WallTileGenerator.Generate());
+				map.SetItem(x, y, WallTileGenerator.Generate(x, y));
 	}
 }

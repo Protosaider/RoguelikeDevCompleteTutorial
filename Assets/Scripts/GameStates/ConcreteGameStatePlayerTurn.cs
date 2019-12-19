@@ -45,7 +45,14 @@ public class ConcreteGameStatePlayerTurn : GameState
 
 				playerEntity.BaseMovement.HandleMovement(inputActionData);
 
-				//TODO Switch input handler to enemy turn input handler
+				GameManager._fieldOfView.Clear(playerEntity.CurrentPosition, playerEntity.FovRadius);
+				GameManager._fieldOfView.Recompute(GameManager._world.CurrentMap, playerEntity.CurrentPosition, playerEntity.FovRadius);
+
+				GameManager._mapRenderer.RefreshVisibility(GameManager._fieldOfView.Map);
+
+				//TODO: if entity on tile in fov => show entity
+
+				//TODO Switch input handler to enemy turn input handler?
 				Context.TransitionTo(EGameState.ConcreteGameStateEnemyTurn);
             }
 			else
