@@ -34,13 +34,13 @@ public class MapRenderer : MonoBehaviour
         }
 	}
 
-	public void RefreshVisibility(FovMap fovMap)
+	public void RefreshVisibility(FovMap fovMap, LightMap lightMap)
 	{
 		for (var y = 0; y < fovMap.Height; y++)
 		{
 			for (var x = 0; x < fovMap.Width; x++)
 			{
-				_tileGameObjects.GetItem(x, y).FovTest(fovMap.GetItem(x, y));
+				_tileGameObjects.GetItem(x, y).FovTest(fovMap.GetItem(x, y), lightMap.GetItem(x, y));
 			}
 		}
 

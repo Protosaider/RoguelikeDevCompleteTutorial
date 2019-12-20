@@ -649,7 +649,7 @@ MonoBehaviour:
   BaseRenderer: {fileID: 0}
   EntityTileData: {fileID: 11400000, guid: 00744e28ff9096743a909ca11076d0c5, type: 2}
   CurrentPosition: {x: 0, y: 0}
-  FovRadius: 5
+  FovRadius: 3
 --- !u!114 &983955151
 MonoBehaviour:
   m_ObjectHideFlags: 0

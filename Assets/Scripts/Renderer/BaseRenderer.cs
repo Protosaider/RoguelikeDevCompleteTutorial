@@ -30,8 +30,8 @@ public class BaseRenderer : MonoBehaviour
 		_spriteRenderer.sortingLayerID = sortingLayerId;
 	}
 
-	public void FovTest(Boolean isInFov)
+	public void FovTest(Boolean isInFov, Single lightValue)
 	{
-		_spriteRenderer.color = isInFov ? Color.green : Color.red;
+		_spriteRenderer.color = isInFov ? new Color(0, lightValue, 0, 1) : Color.red;
 	}
 }
