@@ -34,7 +34,7 @@ public class MapRenderer : MonoBehaviour
         }
 	}
 
-	public void RefreshVisibility(FovMap fovMap, LightMap lightMap)
+	public void RefreshVisibility(BooleanMap fovMap, LightMap lightMap)
 	{
 		for (var y = 0; y < fovMap.Height; y++)
 		{

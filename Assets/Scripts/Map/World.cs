@@ -17,6 +17,8 @@ public class World : MonoBehaviour
 	private DefaultMapFiller DefaultMapFiller;
 	[SerializeField]
 	private SquareRoomMapFiller RoomMapFiller;
+	[SerializeField]
+	public RoomEntitySpawner RoomEntitySpawner;
 
 	public Vector2Int PlayerSpawnPoint;
 
@@ -34,6 +36,9 @@ public class World : MonoBehaviour
 		DefaultMapFiller.FillMap(CurrentMap);
 		RoomMapFiller.FillMap(CurrentMap);
 
-		PlayerSpawnPoint = RoomMapFiller.GetSpawnPoint();
+		RoomEntitySpawner.SetRooms(RoomMapFiller.rooms);
+		RoomEntitySpawner.SpawnEntities();
+
+        PlayerSpawnPoint = RoomMapFiller.GetSpawnPoint();
 	}
 }

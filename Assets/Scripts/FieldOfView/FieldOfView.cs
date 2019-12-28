@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FovMap : Grid<Boolean>
+public class BooleanMap : Grid<Boolean>
 {
-	public FovMap(Int32 width, Int32 height) : base(width, height) { }
+	public BooleanMap(Int32 width, Int32 height) : base(width, height) { }
 }
 
 public class LightMap : Grid<Single>
@@ -15,25 +15,27 @@ public class LightMap : Grid<Single>
 
 public class FieldOfView : MonoBehaviour
 {
-	public FovMap Map;
+	public BooleanMap FovMap;
+	public BooleanMap ExploreMap;
 	public LightMap LightMap; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	public FieldOfView(Int32 width, Int32 height)
 	{
-		Map = new FovMap(width, height);
+		FovMap = new BooleanMap(width, height);
 		LightMap = new LightMap(width, height); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		ExploreMap = new BooleanMap(width, height); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}
 
 	public void Clear(Vector2Int origin, Int32 fovRadius) => Clear(origin.x, origin.y, fovRadius);
 
 	public void Clear(Int32 originX, Int32 originY, Int32 fovRadius)
 	{
-		Map.SetItem(originX, originY, false);
+		FovMap.SetItem(originX, originY, false);
 
 		if (fovRadius <= 0)
 			return;
 
-		RectInt fovArea = new RectInt(0, 0, Map.Width - 1, Map.Height - 1);
+		RectInt fovArea = new RectInt(0, 0, FovMap.Width - 1, FovMap.Height - 1);
 
 		fovArea = fovArea.Intersection(
 			new RectInt(originX - fovRadius - 1, originY - fovRadius - 1, fovRadius * 2 + 3, fovRadius * 2 + 3)
@@ -42,7 +44,7 @@ public class FieldOfView : MonoBehaviour
 		for (var y = fovArea.yMin; y <= fovArea.yMax; y++)
 			for (var x = fovArea.xMin; x <= fovArea.xMax; x++)
 			{
-				Map.SetItem(x, y, false);
+				FovMap.SetItem(x, y, false);
 				LightMap.SetItem(x, y, 0); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			}
 
@@ -54,7 +56,7 @@ public class FieldOfView : MonoBehaviour
 
     public void Recompute(TileMap map, Int32 originX, Int32 originY, Int32 fovRadius)
     {
-        Map.SetItem(originX, originY, true);
+        FovMap.SetItem(originX, originY, true);
 
         if (fovRadius <= 0)
             return;
@@ -352,10 +354,11 @@ public class FieldOfView : MonoBehaviour
 				break;
 		}
 
-		Map.SetItemSafe((int)nx, (int)ny, true);
+		FovMap.SetItemSafe((int)nx, (int)ny, true);
 		LightMap.SetItemSafe((int)nx, (int)ny,
             UnityMath.Remap(getDistance((int)originX, (int)originY, (int)nx, (int)ny), 0, fovRadius, 1, 0));
-    }
+		ExploreMap.SetItemSafe((int)nx, (int)ny, true);
+	}
 
 
     //  public void Recompute(TileMap map, Int32 originX, Int32 originY, Int32 fovRadius)
@@ -427,7 +430,7 @@ public class FieldOfView : MonoBehaviour
                 }
 
                 //bool inRange = fovRadius < 0 || getDistance(originX, originY, tx, ty) <= fovRadius;
-                bool inRange = !Map.IsOutside(tx, ty) && (fovRadius < 0 || getDistance(originX, originY, tx, ty) <= fovRadius);
+                bool inRange = !FovMap.IsOutside(tx, ty) && (fovRadius < 0 || getDistance(originX, originY, tx, ty) <= fovRadius);
     //            if (inRange)
 				//{
 				//	Map.SetItem(tx, ty, true);
@@ -437,7 +440,7 @@ public class FieldOfView : MonoBehaviour
                 // NOTE: use the next line instead if you want the algorithm to be symmetrical
                 if (inRange && (y != topY || slopeTop.y * x >= slopeTop.x * y) && (y != bottomY || slopeBottom.y * x <= slopeBottom.x * y))
 				{
-					Map.SetItem(tx, ty, true);
+					FovMap.SetItem(tx, ty, true);
 					LightMap.SetItem(tx, ty,
 						UnityMath.Remap(getDistance(originX, originY, tx, ty), 0, fovRadius, 1, 0));
                 }
@@ -835,14 +838,14 @@ private double GetSlope(double x1, double y1, double x2, double y2, bool invertS
 		rhs = temp;
 	}
 
-	private void BresenhamLine(TileMap map, FovMap fovMap, Int32 fromX, Int32 fromY, Int32 toX, Int32 toY,
+	private void BresenhamLine(TileMap map, BooleanMap fovMap, Int32 fromX, Int32 fromY, Int32 toX, Int32 toY,
 		Func<Vector2Int, Vector2Int, Int32> getDistance, Int32 fovRange, Boolean isObstacleLighted) =>
 		BresenhamLine(map, fovMap, fromX, fromY, toX, toY,
 			(x0, y0, x1, y1) => getDistance(new Vector2Int(x0, y0), new Vector2Int(x1, y1)), fovRange,
 			isObstacleLighted);
 
 
-    private void BresenhamLine(TileMap map, FovMap fovMap, Int32 fromX, Int32 fromY, Int32 toX, Int32 toY, Func<Int32, Int32, Int32, Int32, Int32> getDistance, Int32 fovRange, Boolean isObstacleLighted)
+    private void BresenhamLine(TileMap map, BooleanMap fovMap, Int32 fromX, Int32 fromY, Int32 toX, Int32 toY, Func<Int32, Int32, Int32, Int32, Int32> getDistance, Int32 fovRange, Boolean isObstacleLighted)
     {
 		Int32 xDiff = toX - fromX, 
 			yDiff = toY - fromY, 

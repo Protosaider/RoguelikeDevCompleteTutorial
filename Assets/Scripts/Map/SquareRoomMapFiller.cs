@@ -14,6 +14,8 @@ public class SquareRoomMapFiller : IMapFiller
 	[SerializeField]
 	private Int32 roomMaxSize;
 
+	public List<RectInt> rooms = new List<RectInt>();
+
     public TileGenerator EmptyTileGenerator;
 
 	public Vector2Int GetSpawnPoint() => _playerSpawnPoint;
@@ -23,8 +25,7 @@ public class SquareRoomMapFiller : IMapFiller
     public void FillMap(TileMap map)
 	{
         //TODO: Random seed?
-
-		List<RectInt> rooms = new List<RectInt>();
+		rooms.Clear();
 
 		for (Int32 i = 0; i < maxRooms; i++)
 		{

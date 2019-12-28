@@ -48,13 +48,13 @@ public class ConcreteGameStatePlayerTurn : GameState
 				GameManager._fieldOfView.Clear(playerEntity.CurrentPosition, playerEntity.FovRadius);
 				GameManager._fieldOfView.Recompute(GameManager._world.CurrentMap, playerEntity.CurrentPosition, playerEntity.FovRadius);
 
-				GameManager._mapRenderer.RefreshVisibility(GameManager._fieldOfView.Map, GameManager._fieldOfView.LightMap);
+				GameManager._mapRenderer.RefreshVisibility(GameManager._fieldOfView.FovMap, GameManager._fieldOfView.LightMap);
 
                 //TODO: if entity on tile in fov => show entity
 				foreach (var entity in GameManager._entitiesHolder)
 				{
 					entity.BaseRenderer.FovTest(
-						GameManager._fieldOfView.Map.GetItem(entity.CurrentPosition.x, entity.CurrentPosition.y),
+						GameManager._fieldOfView.FovMap.GetItem(entity.CurrentPosition.x, entity.CurrentPosition.y),
 						GameManager._fieldOfView.LightMap.GetItem(entity.CurrentPosition.x, entity.CurrentPosition.y)
 					);
 				}
